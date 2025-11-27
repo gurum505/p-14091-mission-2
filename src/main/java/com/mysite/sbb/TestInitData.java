@@ -42,11 +42,14 @@ public class TestInitData {
 
         Question q2 = new Question();
         q2.setSubject("subject2");
-        q2.setContent("content1");
+        q2.setContent("content2");
         q2.setCreateDate(LocalDateTime.now());
         questionRepository.save(q2); // 두번째 질문 저장
 
-        q2.addAnswer("answer1");
+        q1.addAnswer("answer1-1");
+        q2.addAnswer("answer2-1");
+        q2.addAnswer("answer2-2");
+
     }
 }
 
