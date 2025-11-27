@@ -6,15 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequestMapping("/question")
 @Controller
 @RequiredArgsConstructor
 public class QuestionController {
-    private final QuestionRepository questionRepository;
+    private final QuestionService questionService;
 
 //    @GetMapping("/question/list")
 //    @ResponseBody
@@ -46,12 +49,19 @@ public class QuestionController {
 //    }
 
 
-    @GetMapping("/question/list")
+    @GetMapping("/list")
     public String list(Model model) {
-        List<Question> questions =  questionRepository.findAll();
+        List<Question> questions =  questionService.getList();
         model.addAttribute("questions",questions);
 
         return "question_list";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String detail(Model model, @PathVariable  Integer id) {
+        Question q = this.questionService.getQuestion(id);
+        model.addAttribute("question",q);
+        return "question_detail";
     }
 
 }
