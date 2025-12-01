@@ -39,6 +39,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     //testImplementation("org.springframework.boot:spring-boot-starter-thymeleaf-test")
     implementation("org.commonmark:commonmark:0.27.0")
+    implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
+
 }
 
 tasks.withType<Test> {
