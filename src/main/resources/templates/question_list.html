@@ -1,8 +1,9 @@
 
 <html layout:decorate="~{layout}">
-<div layout:fragment="content">
-    <table border="1">
-        <thead>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<div layout:fragment="content" class="container my-3">
+    <table border="1" class="table">
+        <thead class="table-dark">
             <tr>
                 <th>변호</th>
                 <th>제목</th>
@@ -10,14 +11,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="q:${questions}">
-                <th>[[${q.id}]]</th>
+            <tr th:each="q,loop:${questions}">
+                <th th:text="${loop.count}"></th>
                 <td>
                     <a th:href="@{|/question/detail/${q.id}|}" th:text="${q.subject}">
 
                     </a>
                 </td>
-                <td>[[${q.createDate}]]</td>
+                <td th:text="${#temporals.format(q.createDate, 'yyyy-MM-dd HH:mm')}"></td>
             </tr>
         </tbody>
     </table>
